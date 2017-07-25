@@ -29,10 +29,7 @@ ALLOWED_HOSTS = ['*']
 
 DEBUG = True
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+
 
 
 # Application definition
@@ -83,13 +80,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd26u2unhi85mfg',
-        'USER': 'zbimoslsbcebfb',
-        'PASSWORD': '54fdd510c2104c5340c8a0cfe750fa690c848e8705069cc36d136a704b31778a',
-        'HOST': 'ec2-23-21-158-253.compute-1.amazonaws.com',
-        'PORT': '5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -135,15 +127,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
-
-
-# Update database configuration with $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 
 
